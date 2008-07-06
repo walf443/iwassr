@@ -22,6 +22,10 @@ class AppController < OSX::NSObject
     @window.alphaValue = 0.9
     @window.title = 'iWassr'
     @main_view.customUserAgent = 'iWassr 0.0.1'
+
+    @policy = MainViewPolicy.alloc.init
+    @main_view.policyDelegate = @policy
+    
     init_loading
     NSTimer.objc_send(:scheduledTimerWithTimeInterval, 120, 
       :target, self, 
@@ -131,6 +135,9 @@ class AppController < OSX::NSObject
             color: #9999ff;
             width: 10%;
           }
+          .created_at {
+            color: inherit;
+          }
           .clear-both {
             clear: both;
             height: 1px;
@@ -161,10 +168,43 @@ class AppController < OSX::NSObject
         <div class="user_login_id">#{ status['user_login_id'] }</div>
       </div>
       <div class="message">#{ msg }</div>
-      <div class="created_at" title="#{ time.strftime('%Y-%m-%d %H:%M:%S') }">#{ time.strftime('%H:%M:%S') }</div>
+      <div class="created_at" title="#{ time.strftime('%Y-%m-%d %H:%M:%S') }"><a href="#{ status['link'] }">#{ time.strftime('%H:%M:%S') }</a></div>
     </div>
     <div class="clear-both">&nbsp;</div>
     <div class="status-separetor"></div>
     EOF_STATUS
+  end
+
+end
+
+# This code copying from LimeChat.
+# 
+# Created by Satoshi Nakagawa.
+# You can redistribute it and/or modify it under the Ruby's license or the GPL2.
+#
+class MainViewPolicy < OSX::NSObject
+  include OSX
+
+  objc_method :webView_decidePolicyForNavigationAction_request_frame_decisionListener, 'v@:@@@@@'
+  def webView_decidePolicyForNavigationAction_request_frame_decisionListener(sender, action, request, frame, listener)
+    case action.objectForKey(WebActionNavigationTypeKey).intValue.to_i
+    when WebNavigationTypeLinkClicked
+      listener.ignore
+      _open_url(action.objectForKey(WebActionOriginalURLKey).absoluteString)
+    when WebNavigationTypeOther
+      listener.use
+    else
+      listener.ignore
+    end
+  end
+
+  def _open_url url
+    urls = [ NSURL::URLWithString(url) ]
+    NSWorkspace.sharedWorkspace.objc_send(:openURLs, urls,
+      :withAppBundleIdentifier, nil,
+      :options, NSWorkspaceLaunchAsync,
+      :additionalEventParamDescriptor, nil,
+      :launchIdentifiers, nil
+    )
   end
 end
