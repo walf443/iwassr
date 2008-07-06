@@ -23,7 +23,7 @@ class AppController < OSX::NSObject
     @window.title = 'iWassr'
     @main_view.customUserAgent = 'iWassr 0.0.1'
     init_loading
-    NSTimer.scheduledTimerWithTimeInterval_target_selector_userInfo_repeats 120, self, 'updated', nil, true
+    NSTimer.scheduledTimerWithTimeInterval_target_selector_userInfo_repeats 120, self, 'update', nil, true
   end
 
   def init_loading
