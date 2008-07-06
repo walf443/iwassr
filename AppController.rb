@@ -54,7 +54,6 @@ class AppController < OSX::NSObject
     doc = @main_view.mainFrame.DOMDocument
     if doc
       doc.body.innerHTML = doc.body.innerHTML + updated_body
-      # @data.concat(updated_items)
     end
   end
 
