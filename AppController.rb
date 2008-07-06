@@ -23,7 +23,12 @@ class AppController < OSX::NSObject
     @window.title = 'iWassr'
     @main_view.customUserAgent = 'iWassr 0.0.1'
     init_loading
-    NSTimer.scheduledTimerWithTimeInterval_target_selector_userInfo_repeats 120, self, 'update', nil, true
+    NSTimer.objc_send(:scheduledTimerWithTimeInterval, 120, 
+      :target, self, 
+      :selector, 'update', 
+      :userInfo, nil,
+      :repeats, true
+    )
   end
 
   def init_loading
@@ -35,7 +40,10 @@ class AppController < OSX::NSObject
 
     html = init_html(main_body)
 
-    @main_view.mainFrame.loadHTMLString_baseURL(html, NSURL.URLWithString('http://iwassr.walf443.org/'))
+    @main_view.mainFrame.objc_send(:loadHTMLString, html, 
+      :baseURL, NSURL.URLWithString('http://iwassr.walf443.org/')
+    )
+
   end
 
   def update
