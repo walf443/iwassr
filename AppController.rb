@@ -124,6 +124,9 @@ class AppController < OSX::NSObject
              color: #00ff00;
              vertical-align: -webkit-baseline-middle;
           }
+          .user_login_id a {
+            color: inherit;
+          }
           .message {
             display: -webkit-nowrap;
             width: 70%;
@@ -165,7 +168,7 @@ class AppController < OSX::NSObject
     <div class="status" id="#{ status['rid'] }">
       <div class="user" title="#{ status['user']['screen_name'] } ( #{ status['user_login_id'] } )">
         <div class="user_icon"><img src="#{ status['user']['profile_image_url'] }" width="32" height="32"></img></div>
-        <div class="user_login_id">#{ status['user_login_id'] }</div>
+        <div class="user_login_id"><a href="http://wassr.jp/user/#{ status['user_login_id'] }">#{ status['user_login_id'] }</a></div>
       </div>
       <div class="message">#{ msg }</div>
       <div class="created_at" title="#{ time.strftime('%Y-%m-%d %H:%M:%S') }"><a href="#{ status['link'] }">#{ time.strftime('%H:%M:%S') }</a></div>
