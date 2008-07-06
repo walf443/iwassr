@@ -135,7 +135,7 @@ class AppController < OSX::NSObject
             color: #9999ff;
             width: 10%;
           }
-          .created_at {
+          .created_at a {
             color: inherit;
           }
           .clear-both {
