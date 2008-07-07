@@ -101,6 +101,9 @@ class AppController < OSX::NSObject
              color: #ffffff;
              background-color: #000000;
           }
+          a {
+            color: #5555ff;
+          }
           .status {
              display: -webkit-box;
              width: 100%;
@@ -158,8 +161,12 @@ class AppController < OSX::NSObject
     time = Time.at(status['epoch'])
     # Hack for none @ mark user reply.
     msg = nil
-    if ( status['reply_user_login_id'] ) && ( status['html'] !~ /^@[a-zA-Z1-9]+/ ) 
-        msg = "@#{ status['reply_user_login_id'] } #{ status['html'] }"
+    if ( status['reply_user_login_id'] ) 
+      if ( status['html'] =~ /^@([a-zA-Z][a-zA-Z0-9]*)/ ) 
+        msg = status['html'].gsub(/^@([a-zA-Z][a-zA-Z0-9]*)/) { %Q{@<a class="reply_user_login_id" href="http://wassr.jp/user/#{ status['reply_user_login_id'] }">#$1</a> } }
+      else
+        msg = %Q{@<a class="reply_user_link" href="http://wassr.jp/user/#{ status['reply_user_login_id'] }">#{ status['reply_user_login_id'] }</a> #{ status['html'] } }
+      end
     else
       msg = status['html']
     end
