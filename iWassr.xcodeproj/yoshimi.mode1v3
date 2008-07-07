@@ -216,10 +216,10 @@
 						<key>_historyCapacity</key>
 						<integer>0</integer>
 						<key>bookmark</key>
-						<string>882FBDA40E2269260086FE09</string>
+						<string>88EF34F30E22DC1D0096BFF0</string>
 						<key>history</key>
 						<array>
-							<string>8822B4740E21152B00C19572</string>
+							<string>882FBDB40E2279CD0086FE09</string>
 						</array>
 					</dict>
 					<key>SplitCount</key>
@@ -312,6 +312,7 @@
 								<string>885C0CFE0E1F73180041E33E</string>
 								<string>29B97315FDCFA39411CA2CEA</string>
 								<string>29B97317FDCFA39411CA2CEA</string>
+								<string>29B97323FDCFA39411CA2CEA</string>
 								<string>1C37FABC05509CD000000102</string>
 							</array>
 							<key>PBXSmartGroupTreeModuleOutlineStateSelectionKey</key>
@@ -423,9 +424,9 @@
 			</array>
 			<key>TableOfContents</key>
 			<array>
-				<string>882FBD380E2115410086FE09</string>
+				<string>88EF34D20E22CE410096BFF0</string>
 				<string>1CE0B1FE06471DED0097A5F4</string>
-				<string>882FBD390E2115410086FE09</string>
+				<string>88EF34D30E22CE410096BFF0</string>
 				<string>1CE0B20306471E060097A5F4</string>
 				<string>1CE0B20506471E060097A5F4</string>
 			</array>
@@ -559,14 +560,11 @@
 	<integer>5</integer>
 	<key>WindowOrderList</key>
 	<array>
-		<string>882FBD570E2117970086FE09</string>
-		<string>882FBD580E2117970086FE09</string>
-		<string>882FBD590E2117970086FE09</string>
 		<string>1CD10A99069EF8BA00B06720</string>
 		<string>882E8B3C0E1F50720067FB9A</string>
-		<string>1C78EAAD065D492600B07095</string>
 		<string>/Users/yoshimi/Sources/iWassr/iWassr.xcodeproj</string>
 		<string>8822B4720E21152B00C19572</string>
+		<string>1C78EAAD065D492600B07095</string>
 	</array>
 	<key>WindowString</key>
 	<string>300 379 690 397 0 0 1280 778 </string>
@@ -646,7 +644,7 @@
 			<key>TableOfContents</key>
 			<array>
 				<string>882E8B3C0E1F50720067FB9A</string>
-				<string>882FBD3F0E2115C60086FE09</string>
+				<string>88EF34E10E22D6A60096BFF0</string>
 				<string>1CD0528F0623707200166675</string>
 				<string>XCMainBuildResultsModuleGUID</string>
 			</array>
@@ -766,13 +764,13 @@
 			<key>TableOfContents</key>
 			<array>
 				<string>1CD10A99069EF8BA00B06720</string>
-				<string>882FBD400E2115C60086FE09</string>
+				<string>88EF34E20E22D6A60096BFF0</string>
 				<string>1C162984064C10D400B95A72</string>
-				<string>882FBD410E2115C60086FE09</string>
-				<string>882FBD420E2115C60086FE09</string>
-				<string>882FBD430E2115C60086FE09</string>
-				<string>882FBD440E2115C60086FE09</string>
-				<string>882FBD450E2115C60086FE09</string>
+				<string>88EF34E30E22D6A60096BFF0</string>
+				<string>88EF34E40E22D6A60096BFF0</string>
+				<string>88EF34E50E22D6A60096BFF0</string>
+				<string>88EF34E60E22D6A60096BFF0</string>
+				<string>88EF34E70E22D6A60096BFF0</string>
 			</array>
 			<key>ToolbarConfiguration</key>
 			<string>xcode.toolbar.config.debugV3</string>
@@ -936,7 +934,7 @@
 			<key>TableOfContents</key>
 			<array>
 				<string>1C78EAAD065D492600B07095</string>
-				<string>882FBD460E2115C60086FE09</string>
+				<string>88EF34E80E22D6A60096BFF0</string>
 				<string>1C78EAAC065D492600B07095</string>
 			</array>
 			<key>ToolbarConfiguration</key>

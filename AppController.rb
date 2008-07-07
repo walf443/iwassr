@@ -23,6 +23,10 @@ class AppController < OSX::NSObject
     @window.title = 'iWassr'
     @main_view.customUserAgent = 'iWassr 0.0.1'
 
+    NSUserDefaults.standardUserDefaults.synchronize
+    @login_id = NSUserDefaults.standardUserDefaults.objectForKey('LoginID')
+    @password = NSUserDefaults.standardUserDefaults[:Password]
+
     @policy = MainViewPolicy.alloc.init
     @main_view.policyDelegate = @policy
     
@@ -72,7 +76,7 @@ class AppController < OSX::NSObject
   def _get_json
     json = []
     begin
-      ( WASSR_API_BASE + 'statuses/public_timeline.json' ).open do |f|
+      ( WASSR_API_BASE + "statuses/friends_timeline.json" ).open(:http_basic_authentication => [ @login_id, @password ]) do |f|
         str = f.read
         json = JSON.parse(str)
       end
