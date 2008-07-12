@@ -34,11 +34,9 @@ class AppController < OSX::NSObject
     @window.alphaValue = 0.9
 
     NSUserDefaults.standardUserDefaults.synchronize
-    @login_id = NSUserDefaults.standardUserDefaults[:LoginID]
-    @password = NSUserDefaults.standardUserDefaults[:Password]
 
     @window.title = 'iWassr'
-    @main_view.customUserAgent = "iWassr/0.0.1 (#{ @login_id })"
+    @main_view.customUserAgent = "iWassr/0.0.1 (#{ login_id })"
     @policy = MainViewPolicy.alloc.init
     @main_view.policyDelegate = @policy
     
@@ -49,6 +47,14 @@ class AppController < OSX::NSObject
       :userInfo, nil,
       :repeats, true
     )
+  end
+
+  def login_id
+    NSUserDefaults.standardUserDefaults[:LoginID]
+  end
+
+  def password
+    NSUserDefaults.standardUserDefaults[:Password]
   end
 
   def init_loading
@@ -89,7 +95,7 @@ class AppController < OSX::NSObject
   def _get_json
     json = []
     begin
-      ( WASSR_API_BASE + "statuses/friends_timeline.json" ).open('User-Agent' => @main_view.customUserAgent, :http_basic_authentication => [ @login_id, @password ]) do |f|
+      ( WASSR_API_BASE + "statuses/friends_timeline.json" ).open('User-Agent' => @main_view.customUserAgent, :http_basic_authentication => [ login_id, password ]) do |f|
         str = f.read
         json = JSON.parse(str)
       end
@@ -219,7 +225,7 @@ class AppController < OSX::NSObject
         req = Net::HTTP::Post.new('/statuses/update.json', { 
           'User-Agent' => @main_view.customUserAgent.to_s,
         })
-        req.basic_auth @login_id, @password
+        req.basic_auth login_id, password
         req.set_form_data({
           'source' => 'iWassr',
           'status' => message
