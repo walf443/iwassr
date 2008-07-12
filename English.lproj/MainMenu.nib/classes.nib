@@ -13,6 +13,11 @@
 			<string>NSObject</string>
 		</dict>
 		<dict>
+			<key>ACTIONS</key>
+			<dict>
+				<key>onPost</key>
+				<string>id</string>
+			</dict>
 			<key>CLASS</key>
 			<string>AppController</string>
 			<key>LANGUAGE</key>
@@ -26,6 +31,8 @@
 				<key>main_view</key>
 				<string>id</string>
 				<key>nick_view</key>
+				<string>id</string>
+				<key>post_button</key>
 				<string>id</string>
 				<key>total_view</key>
 				<string>id</string>

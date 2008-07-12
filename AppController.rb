@@ -8,20 +8,22 @@
 
 require 'osx/cocoa'
 require 'uri'
+require 'net/http'
 require 'open-uri'
 require 'json'
+Net::HTTP.version_1_2
 
 class AppController < OSX::NSObject
   include OSX
   OSX.require_framework 'WebKit'
   WASSR_API_BASE = URI('http://api.wassr.jp/')
 
-  ib_outlet :window, :main_view, :input_field, :total_view, :nick_view, :channel_view
+  ib_outlet :window, :main_view, :input_field, :post_button, :total_view, :nick_view, :channel_view
 
   def awakeFromNib
     @window.alphaValue = 0.9
     @window.title = 'iWassr'
-    @main_view.customUserAgent = 'iWassr 0.0.1'
+    @main_view.customUserAgent = 'iWassr/0.0.1'
 
     NSUserDefaults.standardUserDefaults.synchronize
     @login_id = NSUserDefaults.standardUserDefaults.objectForKey('LoginID')
@@ -76,7 +78,7 @@ class AppController < OSX::NSObject
   def _get_json
     json = []
     begin
-      ( WASSR_API_BASE + "statuses/friends_timeline.json" ).open(:http_basic_authentication => [ @login_id, @password ]) do |f|
+      ( WASSR_API_BASE + "statuses/friends_timeline.json" ).open('User-Agent' => @main_view.customUserAgent, :http_basic_authentication => [ @login_id, @password ]) do |f|
         str = f.read
         json = JSON.parse(str)
       end
@@ -189,6 +191,24 @@ class AppController < OSX::NSObject
     EOF_STATUS
   end
 
+
+  ib_action :onPost do |sender|
+    @input_field.objc_methods.sort
+    @input_field.stringValue
+    Net::HTTP.start(WASSR_API_BASE.host) do |http|
+      req = Net::HTTP::Post.new('/statuses/update.json', { 
+        'User-Agent' => @main_view.customUserAgent.to_s,
+      })
+      req.basic_auth @login_id, @password
+      req.set_form_data({
+        'source' => 'iWassr',
+        'status' => @input_field.stringValue.to_s,
+      })
+      res = http.request req
+    end
+    @input_field.stringValue = ''
+    update
+  end
 end
 
 # This code copying from LimeChat.
