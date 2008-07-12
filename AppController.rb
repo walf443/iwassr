@@ -54,6 +54,7 @@ class AppController < OSX::NSObject
   def init_loading
     @data = _get_json
     main_body = @data.map {|status|
+      warn status.inspect
       _generate_box(status)
     }.join(%Q{\n})
 
@@ -68,6 +69,7 @@ class AppController < OSX::NSObject
   def update
     updated_items = []
     _get_json.each do |status|
+      warn status.inspect
       unless @data.find {|item| item['rid'] == status['rid'] }
         updated_items.push(status)
         @data.push(status)
@@ -204,9 +206,7 @@ class AppController < OSX::NSObject
     EOF_STATUS
   end
 
-
   ib_action :onPost do |sender|
-    @input_field.stringValue
     Net::HTTP.start(WASSR_API_BASE.host) do |http|
       req = Net::HTTP::Post.new('/statuses/update.json', { 
         'User-Agent' => @main_view.customUserAgent.to_s,
