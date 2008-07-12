@@ -84,6 +84,7 @@ class AppController < OSX::NSObject
       doc.body.innerHTML = doc.body.innerHTML + updated_body
     end
   end
+  ib_action :update
 
   def _get_json
     json = []
