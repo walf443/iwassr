@@ -193,7 +193,6 @@ class AppController < OSX::NSObject
 
 
   ib_action :onPost do |sender|
-    @input_field.objc_methods.sort
     @input_field.stringValue
     Net::HTTP.start(WASSR_API_BASE.host) do |http|
       req = Net::HTTP::Post.new('/statuses/update.json', { 
