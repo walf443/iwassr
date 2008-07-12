@@ -32,7 +32,7 @@
 				<string>id</string>
 				<key>nick_view</key>
 				<string>id</string>
-				<key>post_button</key>
+				<key>pref_panel</key>
 				<string>id</string>
 				<key>total_view</key>
 				<string>id</string>

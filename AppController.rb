@@ -28,7 +28,7 @@ class AppController < OSX::NSObject
   OSX.require_framework 'WebKit'
   WASSR_API_BASE = URI('http://api.wassr.jp/')
 
-  ib_outlet :window, :main_view, :input_field, :total_view, :nick_view, :channel_view
+  ib_outlet :window, :main_view, :input_field, :pref_panel, :total_view, :nick_view, :channel_view
 
   def awakeFromNib
     @window.alphaValue = 0.9
