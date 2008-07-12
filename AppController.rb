@@ -11,10 +11,13 @@ require 'uri'
 require 'net/http'
 require 'open-uri'
 require 'json'
+require 'erb'
 Net::HTTP.version_1_2
 
 class AppController < OSX::NSObject
   include OSX
+  include ERB::Util
+
   OSX.require_framework 'WebKit'
   WASSR_API_BASE = URI('http://api.wassr.jp/')
 
@@ -169,27 +172,27 @@ class AppController < OSX::NSObject
     msg = nil
     if ( status['reply_user_login_id'] ) 
       if ( status['html'] =~ /^@([a-zA-Z][a-zA-Z0-9]*)/ ) 
-        msg = status['html'].gsub(/^@([a-zA-Z][a-zA-Z0-9]*)/) { %Q{@<a class="reply_user_login_id" href="http://wassr.jp/user/#{ status['reply_user_login_id'] }">#$1</a> } }
+        msg = status['html'].gsub(/^@([a-zA-Z][a-zA-Z0-9]*)/) { %Q{@<a class="reply_user_login_id" href="http://wassr.jp/user/#{h status['reply_user_login_id'] }">#$1</a> } }
       else
-        msg = %Q{@<a class="reply_user_link" href="http://wassr.jp/user/#{ status['reply_user_login_id'] }">#{ status['reply_user_login_id'] }</a> #{ status['html'] } }
+        msg = %Q{@<a class="reply_user_link" href="http://wassr.jp/user/#{h status['reply_user_login_id'] }">#{h status['reply_user_login_id'] }</a> #{ status['html'] } }
       end
     else
       msg = status['html']
     end
 
     # FIXME: for avoiding emoticon, using status['text']. 
-    URI.extract(status['text']).each do |uri|
+    URI.extract(h(status['text'])).each do |uri|
       msg = msg.sub(uri, %{<a class="external_link" href="#{uri}">#{uri}</a>})
     end
 
     str = <<-EOF_STATUS
-    <div class="status" id="#{ status['rid'] }">
-      <div class="user" title="#{ status['user']['screen_name'] } ( #{ status['user_login_id'] } )">
-        <div class="user_icon"><img src="#{ status['user']['profile_image_url'] }" width="32" height="32"></img></div>
-        <div class="user_login_id"><a href="http://wassr.jp/user/#{ status['user_login_id'] }">#{ status['user_login_id'] }</a></div>
+    <div class="status" id="#{h status['rid'] }">
+      <div class="user" title="#{h status['user']['screen_name'] } ( #{h status['user_login_id'] } )">
+        <div class="user_icon"><img src="#{h status['user']['profile_image_url'] }" width="32" height="32"></img></div>
+        <div class="user_login_id"><a href="http://wassr.jp/user/#{h status['user_login_id'] }">#{h status['user_login_id'] }</a></div>
       </div>
       <div class="message">#{ msg }</div>
-      <div class="created_at" title="#{ time.strftime('%Y-%m-%d %H:%M:%S') }"><a href="#{ status['link'] }">#{ time.strftime('%H:%M:%S') }</a></div>
+      <div class="created_at" title="#{ time.strftime('%Y-%m-%d %H:%M:%S') }"><a href="#{h status['link'] }">#{ time.strftime('%H:%M:%S') }</a></div>
     </div>
     <div class="clear-both">&nbsp;</div>
     <div class="status-separetor"></div>
