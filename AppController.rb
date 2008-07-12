@@ -177,6 +177,11 @@ class AppController < OSX::NSObject
       msg = status['html']
     end
 
+    # FIXME: for avoiding emoticon, using status['text']. 
+    URI.extract(status['text']).each do |uri|
+      msg = msg.sub(uri, %{<a class="external_link" href="#{uri}">#{uri}</a>})
+    end
+
     str = <<-EOF_STATUS
     <div class="status" id="#{ status['rid'] }">
       <div class="user" title="#{ status['user']['screen_name'] } ( #{ status['user_login_id'] } )">
