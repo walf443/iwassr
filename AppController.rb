@@ -26,7 +26,7 @@ class AppController < OSX::NSObject
     @main_view.customUserAgent = 'iWassr/0.0.1'
 
     NSUserDefaults.standardUserDefaults.synchronize
-    @login_id = NSUserDefaults.standardUserDefaults.objectForKey('LoginID')
+    @login_id = NSUserDefaults.standardUserDefaults[:LoginID]
     @password = NSUserDefaults.standardUserDefaults[:Password]
 
     @policy = MainViewPolicy.alloc.init
