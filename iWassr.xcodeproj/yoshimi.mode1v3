@@ -216,7 +216,7 @@
 						<key>_historyCapacity</key>
 						<integer>0</integer>
 						<key>bookmark</key>
-						<string>88ED70690E28B190007AF296</string>
+						<string>88ED70730E28BBFF007AF296</string>
 						<key>history</key>
 						<array>
 							<string>88ED70510E28A724007AF296</string>
@@ -319,7 +319,6 @@
 							<key>PBXSmartGroupTreeModuleOutlineStateSelectionKey</key>
 							<array>
 								<array>
-									<integer>1</integer>
 									<integer>0</integer>
 								</array>
 							</array>
@@ -566,8 +565,8 @@
 	<array>
 		<string>1CD10A99069EF8BA00B06720</string>
 		<string>882E8B3C0E1F50720067FB9A</string>
-		<string>/Users/yoshimi/Sources/iWassr/iWassr.xcodeproj</string>
 		<string>88ED70520E28A724007AF296</string>
+		<string>/Users/yoshimi/Sources/iWassr/iWassr.xcodeproj</string>
 		<string>1C78EAAD065D492600B07095</string>
 	</array>
 	<key>WindowString</key>
