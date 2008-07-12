@@ -9,9 +9,16 @@
 require 'osx/cocoa'
 require 'uri'
 require 'net/http'
-require 'open-uri'
-require 'json'
 require 'erb'
+require 'open-uri'
+
+begin
+  require 'json'
+rescue LoadError => e
+  $LOAD_PATH.unshift(File.expand_path(File.join( File.dirname(__FILE__), 'vendor', 'json-1.1.3', 'lib')))
+  require 'json/pure'
+end
+
 Net::HTTP.version_1_2
 
 class AppController < OSX::NSObject

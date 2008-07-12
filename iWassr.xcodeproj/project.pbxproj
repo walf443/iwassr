@@ -14,6 +14,7 @@
 		4DDCA70C0ACC9A6100E082CE /* Cocoa.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 1058C7A1FEA54F0111CA2CBB /* Cocoa.framework */; };
 		4DDCA70D0ACC9A6100E082CE /* RubyCocoa.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = E8F5E24E03AEB6EC03A81C6F /* RubyCocoa.framework */; };
 		882E8B2F0E1F4C5D0067FB9A /* AppController.rb in Resources */ = {isa = PBXBuildFile; fileRef = 882E8B2E0E1F4C5D0067FB9A /* AppController.rb */; };
+		88ED704F0E28A6F6007AF296 /* vendor in Resources */ = {isa = PBXBuildFile; fileRef = 88ED6FD60E28A6F6007AF296 /* vendor */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -26,6 +27,7 @@
 		4DDCA7110ACC9A6100E082CE /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.xml; path = Info.plist; sourceTree = "<group>"; };
 		4DDCA7120ACC9A6100E082CE /* iWassr.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = iWassr.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		882E8B2E0E1F4C5D0067FB9A /* AppController.rb */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.script.ruby; path = AppController.rb; sourceTree = "<group>"; };
+		88ED6FD60E28A6F6007AF296 /* vendor */ = {isa = PBXFileReference; lastKnownFileType = folder; path = vendor; sourceTree = SOURCE_ROOT; };
 		E8F5E24E03AEB6EC03A81C6F /* RubyCocoa.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = RubyCocoa.framework; path = /Library/Frameworks/RubyCocoa.framework; sourceTree = "<absolute>"; };
 		E8F5E25803AEB7C803A81C6F /* rb_main.rb */ = {isa = PBXFileReference; lastKnownFileType = text.script.ruby; path = rb_main.rb; sourceTree = "<group>"; };
 /* End PBXFileReference section */
@@ -94,6 +96,7 @@
 			isa = PBXGroup;
 			children = (
 				29B97316FDCFA39411CA2CEA /* main.m */,
+				88ED6FD60E28A6F6007AF296 /* vendor */,
 				E8F5E25803AEB7C803A81C6F /* rb_main.rb */,
 			);
 			name = "Other Sources";
@@ -207,6 +210,7 @@
 				4DDCA7070ACC9A6100E082CE /* InfoPlist.strings in Resources */,
 				4DDCA7080ACC9A6100E082CE /* rb_main.rb in Resources */,
 				882E8B2F0E1F4C5D0067FB9A /* AppController.rb in Resources */,
+				88ED704F0E28A6F6007AF296 /* vendor in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

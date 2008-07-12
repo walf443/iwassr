@@ -7,12 +7,14 @@ Wassr Client for Mac OSX ( Leopard ) using RubyCocoa.
 it required to build.
   - RubyCocoa
   - ruby 1.8.6
-  - json ( RubyGems module )
   - Mac OSX ( may be Tiger or later ).
 
 == Features/Problems
 
 == Thanks
+Floarian Frank ( author of json library in Ruby: http://rubyforge.org/projects/json/ ).
+  this library include his json library at /vendor/json-1-1-3
+
 many source code learned from LimeChat ( IRC Client using RubyCocoa ).
 
 == Copyright
