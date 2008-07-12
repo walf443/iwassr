@@ -172,9 +172,9 @@ class AppController < OSX::NSObject
     msg = nil
     if ( status['reply_user_login_id'] ) 
       if ( status['html'] =~ /^@([a-zA-Z][a-zA-Z0-9]*)/ ) 
-        msg = status['html'].gsub(/^@([a-zA-Z][a-zA-Z0-9]*)/) { %Q{@<a class="reply_user_login_id" href="http://wassr.jp/user/#{h status['reply_user_login_id'] }">#$1</a> } }
+        msg = status['html'].gsub(/^@([a-zA-Z][a-zA-Z0-9]*)/) { %Q{@<a class="reply_user_login_id" href="http://wassr.jp/user/#{h status['reply_user_login_id'] }" title="#{h status['reply_user_login_id'] }: #{h status['reply_message'] }">#$1</a> } }
       else
-        msg = %Q{@<a class="reply_user_link" href="http://wassr.jp/user/#{h status['reply_user_login_id'] }">#{h status['reply_user_login_id'] }</a> #{ status['html'] } }
+        msg = %Q{@<a class="reply_user_link" href="http://wassr.jp/user/#{h status['reply_user_login_id'] }" title="#{h status['reply_user_login_id'] }: #{h status['reply_message'] }">#{h status['reply_user_login_id'] }</a> #{ status['html'] } }
       end
     else
       msg = status['html']
@@ -184,6 +184,7 @@ class AppController < OSX::NSObject
     URI.extract(h(status['text'])).uniq.each do |uri|
       msg = msg.gsub(uri, %{<a class="external_link" href="#{uri}">#{uri}</a>})
     end
+    p msg
 
     str = <<-EOF_STATUS
     <div class="status" id="#{h status['rid'] }">
