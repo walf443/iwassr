@@ -47,7 +47,6 @@ class AppController < OSX::NSObject
   def init_loading
     @data = _get_json
     main_body = @data.map {|status|
-      warn status.inspect
       _generate_box(status)
     }.join(%Q{\n})
 
@@ -68,7 +67,6 @@ class AppController < OSX::NSObject
       end
     end
     updated_body = updated_items.map {|status|
-      warn status.inspect
       _generate_box(status)
     }.join(%Q{\n})
 
@@ -181,10 +179,9 @@ class AppController < OSX::NSObject
     end
 
     # FIXME: for avoiding emoticon, using status['text']. 
-    URI.extract(h(status['text'])).uniq.each do |uri|
+    URI.extract(h(status['text']), %w(http https) ).uniq.each do |uri|
       msg = msg.gsub(uri, %{<a class="external_link" href="#{uri}">#{uri}</a>})
     end
-    p msg
 
     str = <<-EOF_STATUS
     <div class="status" id="#{h status['rid'] }">
