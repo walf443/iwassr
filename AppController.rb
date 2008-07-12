@@ -192,6 +192,10 @@ class AppController < OSX::NSObject
       msg = msg.gsub(uri, %{<a class="external_link" href="#{uri}">#{uri}</a>})
     end
 
+    if status['photo_url']
+      msg = %{#{msg} <a href="#{ h status['photo_url'] }"><img class="photo_thumbnail" src="#{ h status['photo_thumbnail_url'] }" /></a>}
+    end
+
     str = <<-EOF_STATUS
     <div class="status" id="#{h status['rid'] }">
       <div class="user" title="#{h status['user']['screen_name'] } ( #{h status['user_login_id'] } )">
