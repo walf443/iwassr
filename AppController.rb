@@ -32,13 +32,13 @@ class AppController < OSX::NSObject
 
   def awakeFromNib
     @window.alphaValue = 0.9
-    @window.title = 'iWassr'
-    @main_view.customUserAgent = 'iWassr/0.0.1'
 
     NSUserDefaults.standardUserDefaults.synchronize
     @login_id = NSUserDefaults.standardUserDefaults[:LoginID]
     @password = NSUserDefaults.standardUserDefaults[:Password]
 
+    @window.title = 'iWassr'
+    @main_view.customUserAgent = "iWassr/0.0.1 (#{ @login_id })"
     @policy = MainViewPolicy.alloc.init
     @main_view.policyDelegate = @policy
     
