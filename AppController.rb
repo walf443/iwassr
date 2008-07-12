@@ -211,18 +211,21 @@ class AppController < OSX::NSObject
   end
 
   ib_action :onPost do |sender|
-    Net::HTTP.start(WASSR_API_BASE.host) do |http|
-      req = Net::HTTP::Post.new('/statuses/update.json', { 
-        'User-Agent' => @main_view.customUserAgent.to_s,
-      })
-      req.basic_auth @login_id, @password
-      req.set_form_data({
-        'source' => 'iWassr',
-        'status' => @input_field.stringValue.to_s,
-      })
-      res = http.request req
+    message = @input_field.stringValue
+    if message
+      @input_field.stringValue = ''
+      Net::HTTP.start(WASSR_API_BASE.host) do |http|
+        req = Net::HTTP::Post.new('/statuses/update.json', { 
+          'User-Agent' => @main_view.customUserAgent.to_s,
+        })
+        req.basic_auth @login_id, @password
+        req.set_form_data({
+          'source' => 'iWassr',
+          'status' => message
+        })
+        res = http.request req
+      end
     end
-    @input_field.stringValue = ''
     update
   end
 end
