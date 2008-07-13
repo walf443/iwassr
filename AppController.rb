@@ -57,6 +57,11 @@ class AppController < OSX::NSObject
     NSUserDefaults.standardUserDefaults[:Password]
   end
 
+  # FIXME: umm, it seems that check is reversed.
+  def follow_tail?
+    !NSUserDefaults.standardUserDefaults[:FollowTail].to_ruby
+  end
+
   def init_loading
     @data = _get_json
     main_body = @data.map {|status|
@@ -69,7 +74,6 @@ class AppController < OSX::NSObject
     @main_view.mainFrame.objc_send(:loadHTMLString, html, 
       :baseURL, NSURL.URLWithString('http://iwassr.walf443.org/')
     )
-
   end
 
   def update
@@ -88,6 +92,10 @@ class AppController < OSX::NSObject
     doc = @main_view.mainFrame.DOMDocument
     if doc
       doc.body.innerHTML = doc.body.innerHTML + updated_body
+    end
+
+    if follow_tail?
+      moveToBottom
     end
   end
   ib_action :update
@@ -217,6 +225,14 @@ class AppController < OSX::NSObject
     EOF_STATUS
   end
 
+  def moveToBottom
+    doc = @main_view.mainFrame.DOMDocument
+    return unless doc
+    body = doc.body
+    return unless body
+    body.setScrollTop(body.scrollHeight)
+  end
+
   ib_action :onPost do |sender|
     message = @input_field.stringValue
     if message
@@ -234,6 +250,7 @@ class AppController < OSX::NSObject
       end
     end
     update
+    moveToBottom unless follow_tail? # always move to bottom on post message.
   end
 end
 
