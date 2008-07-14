@@ -7,7 +7,7 @@ Wassr Client for Mac OSX ( Leopard ) using RubyCocoa.
 it required to build.
   - RubyCocoa
   - ruby 1.8.6
-  - Mac OSX ( may be Tiger or later ).
+  - Mac OSX ( may be Tiger or later, it may only worked on Intel CPU. ).
 
 == Features/Problems
 
