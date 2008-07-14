@@ -10,6 +10,11 @@ it required to build.
   - Mac OSX ( may be Tiger or later, it may only worked on Intel CPU. ).
 
 == Features/Problems
+patches are always welcome.
+
+== Info
+ * https://github.com/walf443/iwassr/tree
+ * http://wassr.jp/channel/iwassr
 
 == Thanks
 Floarian Frank ( author of json library in Ruby: http://rubyforge.org/projects/json/ ).
