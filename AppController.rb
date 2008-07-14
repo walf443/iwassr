@@ -247,6 +247,7 @@ class AppController < OSX::NSObject
           'status' => message
         })
         res = http.request req
+        warn res.inspect
       end
     end
     update
