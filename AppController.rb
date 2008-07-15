@@ -27,6 +27,7 @@ class AppController < OSX::NSObject
 
   OSX.require_framework 'WebKit'
   WASSR_API_BASE = URI('http://api.wassr.jp/')
+  MAX_STATUS = 2000
 
   ib_outlet :window, :main_view, :input_field, :pref_panel, :total_view, :nick_view, :channel_view
 
@@ -89,6 +90,12 @@ class AppController < OSX::NSObject
       _generate_box(status)
     }.join(%Q{\n})
 
+    ( @data.size - MAX_STATUS ).times do |i|
+      if remove_first_item
+        @data.shift
+      end
+    end
+
     doc = @main_view.mainFrame.DOMDocument
     if doc
       doc.body.innerHTML = doc.body.innerHTML + updated_body
@@ -113,6 +120,14 @@ class AppController < OSX::NSObject
     end
     
     return json.sort_by {|status| status['epoch'] }
+  end
+
+  def remove_first_item
+    doc = @main_view.mainFrame.DOMDocument
+    return unless doc
+    if doc.body.firstChild
+      doc.body.removeChild(doc.body.firstChild) 
+    end
   end
 
   def init_html body
@@ -212,16 +227,18 @@ class AppController < OSX::NSObject
     end
 
     str = <<-EOF_STATUS
-    <div class="status" id="#{h status['rid'] }">
-      <div class="user" title="#{h status['user']['screen_name'] } ( #{h status['user_login_id'] } )">
-        <div class="user_icon"><img src="#{h status['user']['profile_image_url'] }" width="32" height="32"></img></div>
-        <div class="user_login_id"><a href="http://wassr.jp/user/#{h status['user_login_id'] }">#{h status['user_login_id'] }</a></div>
+    <div class="item">
+      <div class="status" id="#{h status['rid'] }">
+        <div class="user" title="#{h status['user']['screen_name'] } ( #{h status['user_login_id'] } )">
+          <div class="user_icon"><img src="#{h status['user']['profile_image_url'] }" width="32" height="32"></img></div>
+          <div class="user_login_id"><a href="http://wassr.jp/user/#{h status['user_login_id'] }">#{h status['user_login_id'] }</a></div>
+        </div>
+        <div class="message">#{ msg }</div>
+        <div class="created_at" title="#{ time.strftime('%Y-%m-%d %H:%M:%S') }"><a href="#{h status['link'] }">#{ time.strftime('%H:%M:%S') }</a></div>
       </div>
-      <div class="message">#{ msg }</div>
-      <div class="created_at" title="#{ time.strftime('%Y-%m-%d %H:%M:%S') }"><a href="#{h status['link'] }">#{ time.strftime('%H:%M:%S') }</a></div>
+      <div class="clear-both">&nbsp;</div>
+      <div class="status-separetor"></div>
     </div>
-    <div class="clear-both">&nbsp;</div>
-    <div class="status-separetor"></div>
     EOF_STATUS
   end
 
