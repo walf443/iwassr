@@ -268,22 +268,38 @@ class AppController < OSX::NSObject
           warn 'no such command!!'
         end
       else
-        Net::HTTP.start(WASSR_API_BASE.host) do |http|
-          req = Net::HTTP::Post.new('/statuses/update.json', { 
-            'User-Agent' => @main_view.customUserAgent.to_s,
-          })
-          req.basic_auth login_id, password
-          req.set_form_data({
-            'source' => 'iWassr',
-            'status' => message
-          })
-          res = http.request req
-          warn res.inspect
-        end
+        api_post('/statuses/update.json', {
+          'source' => 'iWassr',
+          'status' => message,
+        })
+        update
       end
     end
-    update
     moveToBottom unless follow_tail? # always move to bottom on post message.
+  end
+
+  def cmd_reload *args
+    update
+  end
+
+  def cmd_favmsg *args
+    msg = args.first
+    target_status = @data.find  {|status|
+      status['message'] =~ /msg/
+    }
+
+  end
+
+  def api_post path, args
+    Net::HTTP.start(WASSR_API_BASE.host) do |http|
+      req = Net::HTTP::Post.new(path, { 
+        'User-Agent' => @main_view.customUserAgent.to_s,
+      })
+      req.basic_auth login_id, password
+      req.set_form_data(args)
+      res = http.request req
+      warn res.inspect
+    end
   end
 end
 
