@@ -204,6 +204,8 @@ class AppController < OSX::NSObject
     END_OF_HTML
   end
 
+  REPLY_REGEX = /^@([a-zA-Z][a-zA-Z0-9]+)/
+
   def _generate_box status
     time = Time.at(status['epoch'])
 
@@ -216,7 +218,7 @@ class AppController < OSX::NSObject
 
     # Hack for none @ mark user reply.
     if ( status['reply_user_login_id'] ) 
-      if ( msg =~ /^@([a-zA-Z][a-zA-Z0-9]*)/ ) 
+      if ( msg =~ REPLY_REGEX) 
         msg = msg.gsub(/^@([a-zA-Z][a-zA-Z0-9]*)/) { %Q{@<a class="reply_user_login_id" href="http://wassr.jp/user/#{h status['reply_user_login_id'] }" title="#{h status['reply_user_login_id'] }: #{h status['reply_message'] }">#$1</a> } }
       else
         msg = %Q{@<a class="reply_user_link" href="http://wassr.jp/user/#{h status['reply_user_login_id'] }" title="#{h status['reply_user_login_id'] }: #{h status['reply_message'] }">#{h status['reply_user_login_id'] }</a> #{ msg } }
@@ -251,7 +253,8 @@ class AppController < OSX::NSObject
     body.setScrollTop(body.scrollHeight)
   end
 
-  CMD_REGEX = /\A:([A-Za-z0-9_]+)/
+  CMD_REGEX = /^:([A-Za-z0-9_]+)/
+
   ib_action :onPost do |sender|
     message = @input_field.stringValue.to_s
     if message
