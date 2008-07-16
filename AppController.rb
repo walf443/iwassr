@@ -64,12 +64,13 @@ class AppController < OSX::NSObject
   end
 
   def init_loading
-    @data = _get_json
-    main_body = @data.map {|status|
+    json = _get_json
+    main_body = json.map {|status|
       warn status.inspect
       _generate_box(status)
     }.join(%Q{\n})
 
+    @data= json.reverse
     html = init_html(main_body)
 
     @main_view.mainFrame.objc_send(:loadHTMLString, html, 
@@ -83,7 +84,7 @@ class AppController < OSX::NSObject
       warn status.inspect
       unless @data.find {|item| item['rid'] == status['rid'] }
         updated_items.push(status)
-        @data.push(status)
+        @data.unshift(status)
       end
     end
     updated_body = updated_items.map {|status|
@@ -92,7 +93,7 @@ class AppController < OSX::NSObject
 
     ( @data.size - MAX_STATUS ).times do |i|
       if remove_first_item
-        @data.shift
+        @data.pop
       end
     end
 
