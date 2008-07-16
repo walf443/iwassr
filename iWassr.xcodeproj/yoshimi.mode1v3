@@ -216,7 +216,7 @@
 						<key>_historyCapacity</key>
 						<integer>0</integer>
 						<key>bookmark</key>
-						<string>8822E67E0E2D7AC600267C6D</string>
+						<string>8822E6860E2EB90700267C6D</string>
 						<key>history</key>
 						<array>
 							<string>88ED70AF0E28DD5B007AF296</string>
@@ -568,8 +568,8 @@
 		<string>8822E6540E29128D00267C6D</string>
 		<string>1CD10A99069EF8BA00B06720</string>
 		<string>882E8B3C0E1F50720067FB9A</string>
-		<string>88ED70A10E28D673007AF296</string>
 		<string>/Users/yoshimi/Sources/iWassr/iWassr.xcodeproj</string>
+		<string>88ED70A10E28D673007AF296</string>
 		<string>1C78EAAD065D492600B07095</string>
 	</array>
 	<key>WindowString</key>

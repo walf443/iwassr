@@ -109,6 +109,9 @@
 			8822E6790E2D16D500267C6D /* PBXTextBookmark */ = 8822E6790E2D16D500267C6D /* PBXTextBookmark */;
 			8822E67B0E2D183700267C6D /* PBXTextBookmark */ = 8822E67B0E2D183700267C6D /* PBXTextBookmark */;
 			8822E67E0E2D7AC600267C6D /* PBXTextBookmark */ = 8822E67E0E2D7AC600267C6D /* PBXTextBookmark */;
+			8822E6800E2EB75500267C6D /* PBXTextBookmark */ = 8822E6800E2EB75500267C6D /* PBXTextBookmark */;
+			8822E6840E2EB88600267C6D /* PBXTextBookmark */ = 8822E6840E2EB88600267C6D /* PBXTextBookmark */;
+			8822E6860E2EB90700267C6D /* PBXTextBookmark */ = 8822E6860E2EB90700267C6D /* PBXTextBookmark */;
 			88ED70A00E28D673007AF296 = 88ED70A00E28D673007AF296 /* PBXBookmark */;
 			88ED70AF0E28DD5B007AF296 = 88ED70AF0E28DD5B007AF296 /* PBXTextBookmark */;
 		};
@@ -430,6 +433,36 @@
 		vrLen = 867;
 		vrLoc = 3892;
 	};
+	8822E6800E2EB75500267C6D /* PBXTextBookmark */ = {
+		isa = PBXTextBookmark;
+		fRef = 882E8B2E0E1F4C5D0067FB9A /* AppController.rb */;
+		name = "AppController.rb: 316";
+		rLen = 0;
+		rLoc = 9059;
+		rType = 0;
+		vrLen = 830;
+		vrLoc = 4043;
+	};
+	8822E6840E2EB88600267C6D /* PBXTextBookmark */ = {
+		isa = PBXTextBookmark;
+		fRef = 882E8B2E0E1F4C5D0067FB9A /* AppController.rb */;
+		name = "AppController.rb: 318";
+		rLen = 0;
+		rLoc = 9133;
+		rType = 0;
+		vrLen = 754;
+		vrLoc = 4162;
+	};
+	8822E6860E2EB90700267C6D /* PBXTextBookmark */ = {
+		isa = PBXTextBookmark;
+		fRef = 882E8B2E0E1F4C5D0067FB9A /* AppController.rb */;
+		name = "AppController.rb: 319";
+		rLen = 0;
+		rLoc = 9152;
+		rType = 0;
+		vrLen = 767;
+		vrLoc = 4174;
+	};
 	882E8B1D0E1F48C90067FB9A /* iWassr */ = {
 		isa = PBXExecutable;
 		activeArgIndices = (
@@ -469,9 +502,9 @@
 	};
 	882E8B2E0E1F4C5D0067FB9A /* AppController.rb */ = {
 		uiCtxt = {
-			sepNavIntBoundsRect = "{{0, 0}, {698, 4214}}";
-			sepNavSelRange = "{8776, 0}";
-			sepNavVisRange = "{3892, 867}";
+			sepNavIntBoundsRect = "{{0, 0}, {698, 4424}}";
+			sepNavSelRange = "{9152, 0}";
+			sepNavVisRange = "{4174, 767}";
 			sepNavWindowFrame = "{{155, 83}, {750, 558}}";
 		};
 	};

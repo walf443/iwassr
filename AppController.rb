@@ -250,21 +250,32 @@ class AppController < OSX::NSObject
     body.setScrollTop(body.scrollHeight)
   end
 
+  CMD_REGEX = /\A:([A-Za-z0-9_]+)/
   ib_action :onPost do |sender|
-    message = @input_field.stringValue
+    message = @input_field.stringValue.to_s
     if message
       @input_field.stringValue = ''
-      Net::HTTP.start(WASSR_API_BASE.host) do |http|
-        req = Net::HTTP::Post.new('/statuses/update.json', { 
-          'User-Agent' => @main_view.customUserAgent.to_s,
-        })
-        req.basic_auth login_id, password
-        req.set_form_data({
-          'source' => 'iWassr',
-          'status' => message
-        })
-        res = http.request req
-        warn res.inspect
+      if message =~ CMD_REGEX
+        args = message.split(' ')
+        cmd = args.shift
+        if respond_to? "cmd_#{cmd}", true
+          __send__ "cmd_#{cmd}", args
+        else
+          warn 'no such command!!'
+        end
+      else
+        Net::HTTP.start(WASSR_API_BASE.host) do |http|
+          req = Net::HTTP::Post.new('/statuses/update.json', { 
+            'User-Agent' => @main_view.customUserAgent.to_s,
+          })
+          req.basic_auth login_id, password
+          req.set_form_data({
+            'source' => 'iWassr',
+            'status' => message
+          })
+          res = http.request req
+          warn res.inspect
+        end
       end
     end
     update
