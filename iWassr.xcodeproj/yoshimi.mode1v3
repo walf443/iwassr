@@ -216,7 +216,7 @@
 						<key>_historyCapacity</key>
 						<integer>0</integer>
 						<key>bookmark</key>
-						<string>8822E68B0E2EBF2800267C6D</string>
+						<string>8822E69D0E2EC37600267C6D</string>
 						<key>history</key>
 						<array>
 							<string>88ED70AF0E28DD5B007AF296</string>
@@ -569,8 +569,8 @@
 		<string>1CD10A99069EF8BA00B06720</string>
 		<string>882E8B3C0E1F50720067FB9A</string>
 		<string>/Users/yoshimi/Sources/iWassr/iWassr.xcodeproj</string>
-		<string>1C78EAAD065D492600B07095</string>
 		<string>88ED70A10E28D673007AF296</string>
+		<string>1C78EAAD065D492600B07095</string>
 	</array>
 	<key>WindowString</key>
 	<string>170 208 690 397 0 0 1280 778 </string>
@@ -917,7 +917,7 @@
 								<key>Frame</key>
 								<string>{{0, 0}, {679, 466}}</string>
 								<key>RubberWindowFrame</key>
-								<string>69 271 679 507 0 0 1280 778 </string>
+								<string>69 270 679 507 0 0 1280 778 </string>
 							</dict>
 							<key>Module</key>
 							<string>PBXDebugCLIModule</string>
@@ -946,7 +946,7 @@
 			<key>ToolbarConfiguration</key>
 			<string>xcode.toolbar.config.consoleV3</string>
 			<key>WindowString</key>
-			<string>69 271 679 507 0 0 1280 778 </string>
+			<string>69 270 679 507 0 0 1280 778 </string>
 			<key>WindowToolGUID</key>
 			<string>1C78EAAD065D492600B07095</string>
 			<key>WindowToolIsVisible</key>

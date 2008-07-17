@@ -260,10 +260,11 @@ class AppController < OSX::NSObject
     if message
       @input_field.stringValue = ''
       if message =~ CMD_REGEX
+        cmd = $1
         args = message.split(' ')
-        cmd = args.shift
+        args.shift
         if respond_to? "cmd_#{cmd}", true
-          __send__ "cmd_#{cmd}", args
+          __send__ "cmd_#{cmd}", *args
         else
           warn 'no such command!!'
         end
@@ -285,12 +286,18 @@ class AppController < OSX::NSObject
   def cmd_favmsg *args
     msg = args.first
     target_status = @data.find  {|status|
-      status['message'] =~ /msg/
+      status['text'] =~ /#{msg}/
     }
 
+    if target_status
+      api_post "/favorites/create/#{ target_status['rid'] }.json" 
+      warn "fav: #{ target_status['rid'] }"
+    else
+      warn "no match message: #{msg}"
+    end
   end
 
-  def api_post path, args
+  def api_post path, args={}
     Net::HTTP.start(WASSR_API_BASE.host) do |http|
       req = Net::HTTP::Post.new(path, { 
         'User-Agent' => @main_view.customUserAgent.to_s,
