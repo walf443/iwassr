@@ -284,9 +284,10 @@ class AppController < OSX::NSObject
   end
 
   def cmd_favmsg *args
-    msg = args.first
+    msg = args.shift
+    msg_regex = /#{msg}/
     target_status = @data.find  {|status|
-      status['text'] =~ /#{msg}/
+      status['text'] =~ msg_regex
     }
 
     if target_status
@@ -298,10 +299,20 @@ class AppController < OSX::NSObject
   end
 
   def cmd_favuser *args
-    login_id = args.first
-    target_status = @data.find {|status|
-      status['user_login_id'] == login_id
-    }
+    login_id = args.shift
+    msg = ( args.size > 0 ) ? args.shift : nil
+
+    target_status = nil
+    if msg 
+      msg_regex = /#{msg}/
+      target_status = @data.find {|status|
+        status['user_login_id'] == login_id && status['text'] =~ msg_regex
+      }
+    else
+      target_status = @data.find {|status|
+        status['user_login_id'] == login_id
+      }
+    end
 
     if target_status
       api_post "/favorites/create/#{ target_status['rid'] }.json" 
