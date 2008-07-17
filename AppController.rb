@@ -291,11 +291,27 @@ class AppController < OSX::NSObject
 
     if target_status
       api_post "/favorites/create/#{ target_status['rid'] }.json" 
-      warn "fav: #{target_status['text'] ( #{ target_status['rid'] })"
+      warn "fav: #{target_status['user_login_id']}: #{target_status['text']} (#{ target_status['rid'] })"
     else
       warn "no match message: #{msg}"
     end
   end
+
+  def cmd_favuser *args
+    login_id = args.first
+    target_status = @data.find {|status|
+      status['user_login_id'] == login_id
+    }
+
+    if target_status
+      api_post "/favorites/create/#{ target_status['rid'] }.json" 
+      warn "fav: #{target_status['user_login_id']}: #{target_status['text']} (#{ target_status['rid'] })"
+    else
+      warn "no such user: #{login_id}"
+    end
+  end
+
+  alias cmd_fav cmd_favuser
 
   def api_post path, args={}
     Net::HTTP.start(WASSR_API_BASE.host) do |http|
