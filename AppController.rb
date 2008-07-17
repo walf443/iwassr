@@ -272,11 +272,15 @@ class AppController < OSX::NSObject
           warn 'no such command!!'
         end
       else
-        api_post('/statuses/update.json', {
-          'source' => 'iWassr',
-          'status' => message,
-        })
-        update
+        begin
+          api_post('/statuses/update.json', {
+            'source' => 'iWassr',
+            'status' => message,
+          })
+          update
+        rescue RuntimeError => e
+          warn "#{e}: #{message}"
+        end
       end
     end
     moveToBottom unless follow_tail? # always move to bottom on post message.
@@ -295,10 +299,14 @@ class AppController < OSX::NSObject
 
     if target_status
       warn "fav: #{target_status['user_login_id']}: #{target_status['text']} (#{ target_status['rid'] })"
-      api_post "/favorites/create/#{ target_status['rid'] }.json" 
-      @fav_history.push target_status
-      if @fav_history.size > MAX_FAV_HISTORY
-        @fav_history.shift
+      begin
+        api_post "/favorites/create/#{ target_status['rid'] }.json" 
+        @fav_history.push target_status
+        if @fav_history.size > MAX_FAV_HISTORY
+          @fav_history.shift
+        end
+      rescue RuntimeError => e
+        warn e
       end
     else
       warn "no match message: #{msg}"
@@ -323,10 +331,14 @@ class AppController < OSX::NSObject
 
     if target_status
       warn "fav: #{target_status['user_login_id']}: #{target_status['text']} (#{ target_status['rid'] })"
-      api_post "/favorites/create/#{ target_status['rid'] }.json" 
-      @fav_history.push target_status
-      if @fav_history.size > MAX_FAV_HISTORY
-        @fav_history.shift
+      begin
+        api_post "/favorites/create/#{ target_status['rid'] }.json" 
+        @fav_history.push target_status
+        if @fav_history.size > MAX_FAV_HISTORY
+          @fav_history.shift
+        end
+      rescue RuntimeError => e
+        warn e
       end
     else
       warn "no such user: #{login_id}"
@@ -337,7 +349,12 @@ class AppController < OSX::NSObject
     target = @fav_history.pop
     if target
       warn "defav: #{ target['user_login_id'] }: #{ target['text'] } (#{ target['rid'] })"
-      api_post "/favorites/destroy/#{ target['rid'] }.json"
+      begin
+        api_post("/favorites/destroy/#{ target['rid'] }.json")
+      rescue RuntimeError => e
+        @fav_history.push(target)
+        warn e
+      end
     else
       warn 'no favorites history'
     end
@@ -346,6 +363,7 @@ class AppController < OSX::NSObject
   alias cmd_fav cmd_favuser
 
   def api_post path, args={}
+    res = nil
     Net::HTTP.start(WASSR_API_BASE.host) do |http|
       req = Net::HTTP::Post.new(path, { 
         'User-Agent' => @main_view.customUserAgent.to_s,
@@ -353,7 +371,13 @@ class AppController < OSX::NSObject
       req.basic_auth login_id, password
       req.set_form_data(args)
       res = http.request req
-      warn res.inspect
+    end
+
+    case res
+    when Net::HTTPOK
+      return true
+    else
+      raise RuntimeError, res.inspect
     end
   end
 end
