@@ -28,6 +28,7 @@ class AppController < OSX::NSObject
   OSX.require_framework 'WebKit'
   WASSR_API_BASE = URI('http://api.wassr.jp/')
   MAX_STATUS = 2000
+  MAX_FAV_HISTORY = 10
 
   ib_outlet :window, :main_view, :input_field, :pref_panel, :total_view, :nick_view, :channel_view
 
@@ -48,6 +49,8 @@ class AppController < OSX::NSObject
       :userInfo, nil,
       :repeats, true
     )
+
+    @fav_history = []
   end
 
   def login_id
@@ -291,8 +294,12 @@ class AppController < OSX::NSObject
     }
 
     if target_status
-      api_post "/favorites/create/#{ target_status['rid'] }.json" 
       warn "fav: #{target_status['user_login_id']}: #{target_status['text']} (#{ target_status['rid'] })"
+      api_post "/favorites/create/#{ target_status['rid'] }.json" 
+      @fav_history.push target_status
+      if @fav_history.size > MAX_FAV_HISTORY
+        @fav_history.shift
+      end
     else
       warn "no match message: #{msg}"
     end
@@ -315,10 +322,24 @@ class AppController < OSX::NSObject
     end
 
     if target_status
-      api_post "/favorites/create/#{ target_status['rid'] }.json" 
       warn "fav: #{target_status['user_login_id']}: #{target_status['text']} (#{ target_status['rid'] })"
+      api_post "/favorites/create/#{ target_status['rid'] }.json" 
+      @fav_history.push target_status
+      if @fav_history.size > MAX_FAV_HISTORY
+        @fav_history.shift
+      end
     else
       warn "no such user: #{login_id}"
+    end
+  end
+
+  def cmd_defav *args
+    target = @fav_history.pop
+    if target
+      warn "defav: #{ target['user_login_id'] }: #{ target['text'] } (#{ target['rid'] })"
+      api_post "/favorites/destroy/#{ target['rid'] }.json"
+    else
+      warn 'no favorites history'
     end
   end
 
