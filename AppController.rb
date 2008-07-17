@@ -233,7 +233,7 @@ class AppController < OSX::NSObject
     <div class="item">
       <div class="status" id="#{h status['rid'] }">
         <div class="user" title="#{h status['user']['screen_name'] } ( #{h status['user_login_id'] } )">
-          <div class="user_icon"><img src="#{h status['user']['profile_image_url'] }" width="16" height="16"></img></div>
+          <div class="user_icon"><img src="#{h status['user']['profile_image_url'] }" width="22" height="22"></img></div>
           <div class="user_login_id"><a href="http://wassr.jp/user/#{h status['user_login_id'] }">#{h status['user_login_id'] }</a></div>
         </div>
         <div class="message">#{ msg }</div>
