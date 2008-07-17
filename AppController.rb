@@ -380,6 +380,10 @@ class AppController < OSX::NSObject
       raise RuntimeError, res.inspect
     end
   end
+
+  ib_action :onPaste do |sender|
+    @input_field.stringValue += NSPasteboard.generalPasteboard.stringForType(NSStringPboardType)
+  end
 end
 
 # This code copying from LimeChat.

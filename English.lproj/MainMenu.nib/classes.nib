@@ -15,6 +15,8 @@
 		<dict>
 			<key>ACTIONS</key>
 			<dict>
+				<key>onPaste</key>
+				<string>id</string>
 				<key>onPost</key>
 				<string>id</string>
 				<key>update</key>

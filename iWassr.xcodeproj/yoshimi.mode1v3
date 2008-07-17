@@ -216,7 +216,7 @@
 						<key>_historyCapacity</key>
 						<integer>0</integer>
 						<key>bookmark</key>
-						<string>885C3D420E2F9B6400078B9A</string>
+						<string>885C3D590E2FA70000078B9A</string>
 						<key>history</key>
 						<array>
 							<string>8822E6AD0E2F911C00267C6D</string>
@@ -272,8 +272,6 @@
 			<key>Layout</key>
 			<array>
 				<dict>
-					<key>BecomeActive</key>
-					<true/>
 					<key>ContentConfiguration</key>
 					<dict>
 						<key>PBXBottomSmartGroupGIDs</key>
@@ -389,6 +387,8 @@
 							<string>0pt</string>
 						</dict>
 						<dict>
+							<key>BecomeActive</key>
+							<true/>
 							<key>ContentConfiguration</key>
 							<dict>
 								<key>PBXProjectModuleGUID</key>
@@ -563,6 +563,9 @@
 	<integer>5</integer>
 	<key>WindowOrderList</key>
 	<array>
+		<string>885C3D480E2F9E5C00078B9A</string>
+		<string>885C3D490E2F9E5C00078B9A</string>
+		<string>885C3D4A0E2F9E5C00078B9A</string>
 		<string>1CD10A99069EF8BA00B06720</string>
 		<string>882E8B3C0E1F50720067FB9A</string>
 		<string>/Users/yoshimi/Sources/iWassr/iWassr.xcodeproj</string>
@@ -914,7 +917,7 @@
 								<key>Frame</key>
 								<string>{{0, 0}, {679, 466}}</string>
 								<key>RubberWindowFrame</key>
-								<string>69 270 679 507 0 0 1280 778 </string>
+								<string>220 269 679 507 0 0 1280 778 </string>
 							</dict>
 							<key>Module</key>
 							<string>PBXDebugCLIModule</string>
@@ -943,7 +946,7 @@
 			<key>ToolbarConfiguration</key>
 			<string>xcode.toolbar.config.consoleV3</string>
 			<key>WindowString</key>
-			<string>69 270 679 507 0 0 1280 778 </string>
+			<string>220 269 679 507 0 0 1280 778 </string>
 			<key>WindowToolGUID</key>
 			<string>1C78EAAD065D492600B07095</string>
 			<key>WindowToolIsVisible</key>
