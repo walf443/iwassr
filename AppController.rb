@@ -291,7 +291,7 @@ class AppController < OSX::NSObject
 
     if target_status
       api_post "/favorites/create/#{ target_status['rid'] }.json" 
-      warn "fav: #{ target_status['rid'] }"
+      warn "fav: #{target_status['text'] ( #{ target_status['rid'] })"
     else
       warn "no match message: #{msg}"
     end
