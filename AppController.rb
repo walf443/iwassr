@@ -216,7 +216,7 @@ class AppController < OSX::NSObject
     # FIXME: for avoiding emoticon, using status['text']. 
     msg = status['html']
     URI.extract(h(status['text']), %w(http https) ).uniq.each do |uri|
-      msg = msg.gsub(uri, %{<a class="external_link" href="#{uri}">#{uri}</a>})
+      msg = msg.gsub(uri, %{<a class="external_link" href="#{ uri }">#{ _truncate_uri(uri.to_s, 40) }</a>})
     end
 
     # Hack for none @ mark user reply.
@@ -246,6 +246,14 @@ class AppController < OSX::NSObject
       <div class="status-separetor"></div>
     </div>
     EOF_STATUS
+  end
+
+  def _truncate_uri uri, length
+    if uri.size > length
+      uri[0..(length - 3)] + "..."
+    else
+      return uri
+    end
   end
 
   def moveToBottom
