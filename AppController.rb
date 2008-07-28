@@ -42,6 +42,10 @@ class AppController < OSX::NSObject
     @policy = MainViewPolicy.alloc.init
     @main_view.policyDelegate = @policy
     
+    @growl = GrowlController.new
+    @growl.owner = self
+    @growl.register
+
     init_loading
     NSTimer.objc_send(:scheduledTimerWithTimeInterval, 120, 
       :target, self, 
@@ -306,13 +310,14 @@ class AppController < OSX::NSObject
     }
 
     if target_status
-      warn "fav: #{target_status['user_login_id']}: #{target_status['text']} (#{ target_status['rid'] })"
       begin
         api_post "/favorites/create/#{ target_status['rid'] }.json" 
         @fav_history.push target_status
         if @fav_history.size > MAX_FAV_HISTORY
           @fav_history.shift
         end
+        warn "fav: #{target_status['user_login_id']}: #{target_status['text']} (#{ target_status['rid'] })"
+        @growl.notify(:fav, "fav: #{target_status['user_login_id']}", "#{target_status['text']} (#{ target_status['rid']})")
       rescue RuntimeError => e
         warn e
       end
@@ -338,13 +343,14 @@ class AppController < OSX::NSObject
     end
 
     if target_status
-      warn "fav: #{target_status['user_login_id']}: #{target_status['text']} (#{ target_status['rid'] })"
       begin
         api_post "/favorites/create/#{ target_status['rid'] }.json" 
         @fav_history.push target_status
         if @fav_history.size > MAX_FAV_HISTORY
           @fav_history.shift
         end
+        warn "fav: #{target_status['user_login_id']}: #{target_status['text']} (#{ target_status['rid'] })"
+        @growl.notify(:fav, "fav: #{target_status['user_login_id']}", "#{target_status['text']} (#{ target_status['rid']})")
       rescue RuntimeError => e
         warn e
       end
@@ -356,9 +362,10 @@ class AppController < OSX::NSObject
   def cmd_defav *args
     target = @fav_history.pop
     if target
-      warn "defav: #{ target['user_login_id'] }: #{ target['text'] } (#{ target['rid'] })"
       begin
         api_post("/favorites/destroy/#{ target['rid'] }.json")
+        warn "defav: #{ target['user_login_id'] }: #{ target['text'] } (#{ target['rid'] })"
+        @growl.notify(:devfav, "defav: #{target['user_login_id']}", "#{target['text']} (#{ target['rid']})")
       rescue RuntimeError => e
         @fav_history.push(target)
         warn e
