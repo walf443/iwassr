@@ -19,15 +19,15 @@ class GrowlController
 
   def register
     return if @growl
-    @growl = Growl::Notifier.alloc.initWithDelegate(self)
-    @growl.start(:iWassr, MSG_OF.values, MSG_OF.values)
+    @growl = Growl::Notifier.sharedInstance
+    @growl.register(:iWassr, MSG_OF.values, MSG_OF.values)
   end
 
   def notify kind, title, desc, context=nil
-    priority = 0 
+    priority = :normal
     sticky = false
     if MSG_OF[kind]
-      @growl.notify(MSG_OF[kind], title, desc, context, sticky, priority)
+      @growl.notify(MSG_OF[kind], title, desc, :click_context => context, :sticky => sticky, :priority => priority)
     end
   end
 end
