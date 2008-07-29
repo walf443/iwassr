@@ -104,6 +104,10 @@ class AppController < OSX::NSObject
       end
     end
 
+    updated_items.each do |status|
+      @growl.notify(:status, "#{status['user']['screen_name']} (#{status['user_login_id']}) status updated", "#{status['html']}")
+    end
+
     doc = @main_view.mainFrame.DOMDocument
     if doc
       doc.body.innerHTML = doc.body.innerHTML + updated_body

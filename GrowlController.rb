@@ -15,12 +15,13 @@ class GrowlController
     :reply   => 'you recieved message',
     :fav     => 'you fav message',
     :defav   => 'you defav message',
+    :status  => 'update status'
   }
 
   def register
     return if @growl
     @growl = Growl::Notifier.sharedInstance
-    @growl.register(:iWassr, MSG_OF.values, MSG_OF.values)
+    @growl.register(:iWassr, MSG_OF.values, [:reply, :fav, :defav].map {|key| MSG_OF[key] })
   end
 
   def notify kind, title, desc, context=nil
