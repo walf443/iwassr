@@ -11,6 +11,7 @@ require 'uri'
 require 'net/http'
 require 'erb'
 require 'open-uri'
+require 'abbrev'
 
 begin
   require 'json'
@@ -77,7 +78,8 @@ class AppController < OSX::NSObject
       _generate_box(status)
     }.join(%Q{\n})
 
-    @data= json.reverse
+    @data = json.reverse
+    @user_id_list = json.map {|status| status['user_login_id'] }.reject {|item| item.nil? }.sort.uniq
     html = init_html(main_body)
 
     @main_view.mainFrame.objc_send(:loadHTMLString, html, 
@@ -104,14 +106,22 @@ class AppController < OSX::NSObject
       end
     end
 
-    updated_items.each do |status|
-      @growl.notify(:status, "#{status['user']['screen_name']} (#{status['user_login_id']}) status updated", "#{status['html']}")
-    end
-
     doc = @main_view.mainFrame.DOMDocument
     if doc
       doc.body.innerHTML = doc.body.innerHTML + updated_body
     end
+
+    updated_items.each do |item|
+      image = NSImage.alloc.initWithContentsOfURL(NSURL.URLWithString(item['user']['profile_image_url']))
+      @growl.notify(:status, "#{item['user']['screen_name']} (#{item['user_login_id']}) item updated", "#{item['text']}", :icon => image)
+      if item['user_login_id']
+        unless @user_id_list.include?(item['user_login_id'])
+          @user_id_list.push item['user_login_id']
+          @user_id_list.sort!
+        end
+      end
+    end
+    p @user_id_list
 
     if follow_tail?
       moveToBottom
@@ -276,7 +286,7 @@ class AppController < OSX::NSObject
 
   ib_action :onPost do |sender|
     message = @input_field.stringValue.to_s
-    if message
+    if !message.nil? and message != ''
       @input_field.stringValue = ''
       if message =~ CMD_REGEX
         cmd = $1
@@ -300,6 +310,10 @@ class AppController < OSX::NSObject
       end
     end
     moveToBottom unless follow_tail? # always move to bottom on post message.
+  end
+
+  def commands
+    methods.grep(/^cmd_(.*)/).map {|meth| meth.sub(/^cmd_(.*)/, $1) }
   end
 
   def cmd_reload *args
@@ -369,7 +383,7 @@ class AppController < OSX::NSObject
       begin
         api_post("/favorites/destroy/#{ target['rid'] }.json")
         warn "defav: #{ target['user_login_id'] }: #{ target['text'] } (#{ target['rid'] })"
-        @growl.notify(:devfav, "defav: #{target['user_login_id']}", "#{target['text']} (#{ target['rid']})")
+        @growl.notify(:defav, "defav: #{target['user_login_id']}", "#{target['text']} (#{ target['rid']})")
       rescue RuntimeError => e
         @fav_history.push(target)
         warn e

@@ -384,9 +384,9 @@
 			</array>
 			<key>TableOfContents</key>
 			<array>
-				<string>888296B60E3F81B4001DB15D</string>
+				<string>888296CA0E3FE47F001DB15D</string>
 				<string>1CE0B1FE06471DED0097A5F4</string>
-				<string>888296B70E3F81B4001DB15D</string>
+				<string>888296CB0E3FE47F001DB15D</string>
 				<string>1CE0B20306471E060097A5F4</string>
 				<string>1CE0B20506471E060097A5F4</string>
 			</array>
@@ -499,7 +499,7 @@
 	<key>PerspectivesBarVisible</key>
 	<false/>
 	<key>PinnedNavigatorIdentifier</key>
-	<string>888295FE0E380186001DB15D</string>
+	<string>888296C10E3FDF58001DB15D</string>
 	<key>ShelfIsVisible</key>
 	<false/>
 	<key>SourceDescription</key>
@@ -605,7 +605,7 @@
 			<key>TableOfContents</key>
 			<array>
 				<string>882E8B3C0E1F50720067FB9A</string>
-				<string>888296B80E3F81B4001DB15D</string>
+				<string>888296CC0E3FE47F001DB15D</string>
 				<string>1CD0528F0623707200166675</string>
 				<string>XCMainBuildResultsModuleGUID</string>
 			</array>
@@ -725,13 +725,13 @@
 			<key>TableOfContents</key>
 			<array>
 				<string>1CD10A99069EF8BA00B06720</string>
-				<string>888296B90E3F81B4001DB15D</string>
+				<string>888296CD0E3FE47F001DB15D</string>
 				<string>1C162984064C10D400B95A72</string>
-				<string>888296BA0E3F81B4001DB15D</string>
-				<string>888296BB0E3F81B4001DB15D</string>
-				<string>888296BC0E3F81B4001DB15D</string>
-				<string>888296BD0E3F81B4001DB15D</string>
-				<string>888296BE0E3F81B4001DB15D</string>
+				<string>888296CE0E3FE47F001DB15D</string>
+				<string>888296CF0E3FE47F001DB15D</string>
+				<string>888296D00E3FE47F001DB15D</string>
+				<string>888296D10E3FE47F001DB15D</string>
+				<string>888296D20E3FE47F001DB15D</string>
 			</array>
 			<key>ToolbarConfiguration</key>
 			<string>xcode.toolbar.config.debugV3</string>
@@ -893,7 +893,7 @@
 			<key>TableOfContents</key>
 			<array>
 				<string>1C78EAAD065D492600B07095</string>
-				<string>888296BF0E3F81B4001DB15D</string>
+				<string>888296D30E3FE47F001DB15D</string>
 				<string>1C78EAAC065D492600B07095</string>
 			</array>
 			<key>ToolbarConfiguration</key>

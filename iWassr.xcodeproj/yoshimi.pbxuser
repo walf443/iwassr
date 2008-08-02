@@ -75,13 +75,12 @@
 					PBXFileDataSource_Target_ColumnID,
 				);
 			};
-			PBXPerProjectTemplateStateSaveDate = 239042987;
-			PBXWorkspaceStateSaveDate = 239042987;
+			PBXPerProjectTemplateStateSaveDate = 239068282;
+			PBXWorkspaceStateSaveDate = 239068282;
 		};
 		perUserProjectItems = {
 			888295FD0E380186001DB15D = 888295FD0E380186001DB15D /* PBXBookmark */;
 			888296150E3E8852001DB15D = 888296150E3E8852001DB15D /* PBXTextBookmark */;
-			888296990E3E889B001DB15D = 888296990E3E889B001DB15D /* PBXTextBookmark */;
 		};
 		sourceControlManager = 882E8B2B0E1F48CB0067FB9A /* Source Control */;
 		userBuildSettings = {
@@ -140,9 +139,9 @@
 	};
 	882E8B2E0E1F4C5D0067FB9A /* AppController.rb */ = {
 		uiCtxt = {
-			sepNavIntBoundsRect = "{{0, 0}, {1436, 5894}}";
-			sepNavSelRange = "{12081, 0}";
-			sepNavVisRange = "{5608, 1616}";
+			sepNavIntBoundsRect = "{{0, 0}, {1436, 5964}}";
+			sepNavSelRange = "{12449, 0}";
+			sepNavVisRange = "{5926, 1609}";
 			sepNavWindowFrame = "{{127, 80}, {750, 558}}";
 		};
 	};
@@ -167,15 +166,5 @@
 		rType = 0;
 		vrLen = 1609;
 		vrLoc = 5650;
-	};
-	888296990E3E889B001DB15D /* PBXTextBookmark */ = {
-		isa = PBXTextBookmark;
-		fRef = 882E8B2E0E1F4C5D0067FB9A /* AppController.rb */;
-		name = "AppController.rb: 435";
-		rLen = 0;
-		rLoc = 12081;
-		rType = 0;
-		vrLen = 1616;
-		vrLoc = 5608;
 	};
 }

@@ -24,11 +24,12 @@ class GrowlController
     @growl.register(:iWassr, MSG_OF.values, [:reply, :fav, :defav].map {|key| MSG_OF[key] })
   end
 
-  def notify kind, title, desc, context=nil
-    priority = :normal
-    sticky = false
+  def notify kind, title, desc, options={}
+    options[:priority] ||= :normal
+    options[:sticky] ||=  false
+    options[:click_context] ||=  nil
     if MSG_OF[kind]
-      @growl.notify(MSG_OF[kind], title, desc, :click_context => context, :sticky => sticky, :priority => priority)
+        @growl.notify(MSG_OF[kind], title, desc, options)
     end
   end
 end
