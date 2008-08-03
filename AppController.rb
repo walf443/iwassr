@@ -63,6 +63,7 @@ class AppController < OSX::NSObject
     @main_view.customUserAgent = "iWassr/0.0.1 (#{ login_id })"
     @policy = MainViewPolicy.alloc.init
     @main_view.policyDelegate = @policy
+    @main_view.uIDelegate = self
     
     @growl = GrowlController.new
     @growl.owner = self
@@ -445,6 +446,33 @@ class AppController < OSX::NSObject
 
   ib_action :onPaste do |sender|
     @input_field.stringValue += NSPasteboard.generalPasteboard.stringForType(NSStringPboardType)
+  end
+
+  objc_method :webView_contextMenuItemsForElement_defaultMenuItems, '@@:@@@'
+  def webView_contextMenuItemsForElement_defaultMenuItems(webview, dict, default_menu_items)
+
+    # removing none useful context menu.
+    my_menu_items = []
+    default_menu_items.each do |item|
+      if ([
+          WebMenuItemTagOpenLinkInNewWindow,
+          WebMenuItemTagDownloadLinkToDisk,
+          WebMenuItemTagOpenImageInNewWindow,
+          WebMenuItemTagDownloadImageToDisk,
+          WebMenuItemTagOpenFrameInNewWindow,
+          WebMenuItemTagGoBack, 
+          WebMenuItemTagGoForward, 
+          WebMenuItemTagStop,
+          WebMenuItemTagReload, 
+          WebMenuItemTagOther,
+        ].include? item.tag ) then
+          next
+      else
+        my_menu_items.push item
+      end
+    end
+
+    my_menu_items
   end
 end
 
