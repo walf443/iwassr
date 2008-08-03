@@ -42,11 +42,11 @@ class AppController < OSX::NSObject
   ib_outlet :window, :main_view, :input_field, :pref_panel, :total_view, :nick_view, :channel_view
 
   def awakeFromNib
-    @window.alphaValue = 0.9
 
     NSUserDefaults.standardUserDefaults.synchronize
 
     NSApp.delegate = self
+    @window.delegate = self
     # register hotkey
     NSApp.register_hotkey('COMMAND+SHIFT+;') do
       if NSApp.isActive?
@@ -59,6 +59,7 @@ class AppController < OSX::NSObject
     end
 
     @window.title = 'iWassr'
+    @window.alphaValue = 0.9
     @main_view.customUserAgent = "iWassr/0.0.1 (#{ login_id })"
     @policy = MainViewPolicy.alloc.init
     @main_view.policyDelegate = @policy
