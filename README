@@ -24,6 +24,8 @@ cho45 ( author of osxhotkey library: http://coderepos.org/share/browser/lang/rub
   this project include it at /vendor/osxhotkey/
 
 many source code learned from LimeChat ( IRC Client using RubyCocoa ).
+and this project include growl library using LimeChat at /vendor/growl/ .
+
 
 == Copyright
 
