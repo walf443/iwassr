@@ -143,7 +143,17 @@ class AppController < OSX::NSObject
 
     updated_items.each do |item|
       image = NSImage.alloc.initWithContentsOfURL(NSURL.URLWithString(item['user']['profile_image_url']))
-      @growl.notify(:status, "#{item['user']['screen_name']} (#{item['user_login_id']}) item updated", "#{item['text']}", :icon => image)
+      message = item['text']
+      if item['reply_user_login_id']
+        unless message =~ /^@.+/
+          message = "@#{item['reply_user_login_id']} #{message}"
+        end
+      end
+      if item['photo_thumbnail_url']
+        message = "#{message} #{item['photo_thumbnail_url']}"
+      end
+
+      @growl.notify(:status, "#{item['user']['screen_name']} (#{item['user_login_id']}) status updated", "#{message}", :icon => image)
       if item['user_login_id']
         unless @user_id_list.include?(item['user_login_id'])
           @user_id_list.push item['user_login_id']
