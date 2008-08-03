@@ -70,7 +70,7 @@ class AppController < OSX::NSObject
     @growl.register
 
     init_loading
-    NSTimer.objc_send(:scheduledTimerWithTimeInterval, 120, 
+    NSTimer.objc_send(:scheduledTimerWithTimeInterval, 90, 
       :target, self, 
       :selector, 'update', 
       :userInfo, nil,
