@@ -20,6 +20,14 @@ rescue LoadError => e
   require 'json/pure'
 end
 
+begin
+  require 'osx/hotkey'
+rescue LoadError => e
+  $LOAD_PATH.unshift(File.expand_path(File.join( File.dirname(__FILE__), 'vendor', 'osxhotkey', 'lib')))
+  $LOAD_PATH.unshift(File.expand_path(File.join( File.dirname(__FILE__), 'vendor', 'osxhotkey', 'ext')))
+  require 'osx/hotkey'
+end
+
 Net::HTTP.version_1_2
 
 class AppController < OSX::NSObject
@@ -37,6 +45,18 @@ class AppController < OSX::NSObject
     @window.alphaValue = 0.9
 
     NSUserDefaults.standardUserDefaults.synchronize
+
+    NSApp.delegate = self
+    # register hotkey
+    NSApp.register_hotkey('COMMAND+SHIFT+;') do
+      if NSApp.isActive?
+        NSApp.hide(nil)
+      else
+        NSApp.activateIgnoringOtherApps(true)
+        @window.orderFrontRegardless
+        @window.makeKeyAndOrderFront(@window)
+      end
+    end
 
     @window.title = 'iWassr'
     @main_view.customUserAgent = "iWassr/0.0.1 (#{ login_id })"
@@ -56,6 +76,14 @@ class AppController < OSX::NSObject
     )
 
     @fav_history = []
+  end
+
+  def windowDidBecomeMain notification
+    @window.makeFirstResponder(@input_field)
+  end
+
+  def applicationDidHide notification
+    NSApp.unhideWithoutActivation
   end
 
   def login_id

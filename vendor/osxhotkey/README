@@ -1,0 +1,29 @@
+
+osx/hotkey
+by cho45 <cho45@lowreal.net>
+
+== DESCRIPTION:
+Enable Hotkey integraion with Ruby/Cocoa
+
+== FEATURES/PROBLEMS:
+
+* Add a new NSApplication subclass named NSApplicationWithHotKey
+
+== SYNOPSIS:
+
+	require 'osx/cocoa'
+	require 'osx/hotkey'
+
+	app = NSApplicationWithHotKey.sharedApplication
+	ref = app.register_hotkey("Command+Shift+J") do
+		puts 'hello'
+	end
+
+	app.run
+
+Yes. Run this script, and press Command+Shift+J, and see 'hello' on stdout.
+
+== LICENSE:
+
+Ruby's
+
