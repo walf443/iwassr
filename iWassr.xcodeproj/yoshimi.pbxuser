@@ -106,6 +106,13 @@
 			88B2FFDA0E569B7A00948AE8 /* PBXTextBookmark */ = 88B2FFDA0E569B7A00948AE8 /* PBXTextBookmark */;
 			88B2FFE40E569BB900948AE8 /* PBXTextBookmark */ = 88B2FFE40E569BB900948AE8 /* PBXTextBookmark */;
 			88B2FFE60E569C3400948AE8 /* PBXTextBookmark */ = 88B2FFE60E569C3400948AE8 /* PBXTextBookmark */;
+			88B2FFE80E59BC4600948AE8 /* PBXTextBookmark */ = 88B2FFE80E59BC4600948AE8 /* PBXTextBookmark */;
+			88B2FFEA0E59BD6B00948AE8 /* PBXTextBookmark */ = 88B2FFEA0E59BD6B00948AE8 /* PBXTextBookmark */;
+			88B2FFEE0E59C1F700948AE8 /* PBXTextBookmark */ = 88B2FFEE0E59C1F700948AE8 /* PBXTextBookmark */;
+			88B2FFF00E59C32900948AE8 /* PBXTextBookmark */ = 88B2FFF00E59C32900948AE8 /* PBXTextBookmark */;
+			88B2FFF20E59C3AD00948AE8 /* PBXTextBookmark */ = 88B2FFF20E59C3AD00948AE8 /* PBXTextBookmark */;
+			88B2FFF40E59C65200948AE8 /* PBXTextBookmark */ = 88B2FFF40E59C65200948AE8 /* PBXTextBookmark */;
+			88B2FFF60E59C6A000948AE8 /* PBXTextBookmark */ = 88B2FFF60E59C6A000948AE8 /* PBXTextBookmark */;
 		};
 		sourceControlManager = 882E8B2B0E1F48CB0067FB9A /* Source Control */;
 		userBuildSettings = {
@@ -174,9 +181,9 @@
 	};
 	882E8B2E0E1F4C5D0067FB9A /* AppController.rb */ = {
 		uiCtxt = {
-			sepNavIntBoundsRect = "{{0, 0}, {1436, 7126}}";
-			sepNavSelRange = "{14874, 0}";
-			sepNavVisRange = "{7248, 1764}";
+			sepNavIntBoundsRect = "{{0, 0}, {770, 8204}}";
+			sepNavSelRange = "{16418, 0}";
+			sepNavVisRange = "{3765, 1052}";
 			sepNavWindowFrame = "{{127, 80}, {750, 558}}";
 		};
 	};
@@ -227,5 +234,75 @@
 		rType = 0;
 		vrLen = 1764;
 		vrLoc = 7248;
+	};
+	88B2FFE80E59BC4600948AE8 /* PBXTextBookmark */ = {
+		isa = PBXTextBookmark;
+		fRef = 882E8B2E0E1F4C5D0067FB9A /* AppController.rb */;
+		name = "AppController.rb: 547";
+		rLen = 0;
+		rLoc = 15510;
+		rType = 0;
+		vrLen = 776;
+		vrLoc = 7409;
+	};
+	88B2FFEA0E59BD6B00948AE8 /* PBXTextBookmark */ = {
+		isa = PBXTextBookmark;
+		fRef = 882E8B2E0E1F4C5D0067FB9A /* AppController.rb */;
+		name = "AppController.rb: 547";
+		rLen = 0;
+		rLoc = 15501;
+		rType = 0;
+		vrLen = 839;
+		vrLoc = 3201;
+	};
+	88B2FFEE0E59C1F700948AE8 /* PBXTextBookmark */ = {
+		isa = PBXTextBookmark;
+		fRef = 882E8B2E0E1F4C5D0067FB9A /* AppController.rb */;
+		name = "AppController.rb: 565";
+		rLen = 0;
+		rLoc = 16077;
+		rType = 0;
+		vrLen = 1035;
+		vrLoc = 3499;
+	};
+	88B2FFF00E59C32900948AE8 /* PBXTextBookmark */ = {
+		isa = PBXTextBookmark;
+		fRef = 882E8B2E0E1F4C5D0067FB9A /* AppController.rb */;
+		name = "AppController.rb: 575";
+		rLen = 0;
+		rLoc = 16318;
+		rType = 0;
+		vrLen = 876;
+		vrLoc = 3571;
+	};
+	88B2FFF20E59C3AD00948AE8 /* PBXTextBookmark */ = {
+		isa = PBXTextBookmark;
+		fRef = 882E8B2E0E1F4C5D0067FB9A /* AppController.rb */;
+		name = "AppController.rb: 577";
+		rLen = 0;
+		rLoc = 16376;
+		rType = 0;
+		vrLen = 920;
+		vrLoc = 3608;
+	};
+	88B2FFF40E59C65200948AE8 /* PBXTextBookmark */ = {
+		isa = PBXTextBookmark;
+		fRef = 882E8B2E0E1F4C5D0067FB9A /* AppController.rb */;
+		name = "AppController.rb: 577";
+		rLen = 0;
+		rLoc = 16417;
+		rType = 0;
+		vrLen = 1044;
+		vrLoc = 3731;
+	};
+	88B2FFF60E59C6A000948AE8 /* PBXTextBookmark */ = {
+		isa = PBXTextBookmark;
+		fRef = 882E8B2E0E1F4C5D0067FB9A /* AppController.rb */;
+		name = "AppController.rb: 577";
+		rLen = 0;
+		rLoc = 16418;
+		rType = 0;
+		vrLen = 1052;
+		vrLoc = 3765;
 	};
 }
