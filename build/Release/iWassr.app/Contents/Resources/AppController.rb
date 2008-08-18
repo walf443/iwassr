@@ -380,6 +380,7 @@ class AppController < OSX::NSObject
   end
 
   CMD_REGEX = /^:([A-Za-z0-9_]+)/
+  CHANNEL_REGEX = /^#([A-Za-z0-9_]+)\s.+/
 
   ib_action :onPost do |sender|
     message = @input_field.stringValue.to_s
@@ -396,10 +397,20 @@ class AppController < OSX::NSObject
         end
       else
         begin
-          api_post('/statuses/update.json', {
-            'source' => 'iWassr',
-            'status' => message,
-          })
+          if message =~ CHANNEL_REGEX
+            channel = $1
+            message = message.sub(/^##{channel}\s+/, '') 
+
+            api_post('/channel_message/update.json', {
+              'name_en' => channel,
+              'body'    => message,
+            })
+          else
+            api_post('/statuses/update.json', {
+              'source' => 'iWassr',
+              'status' => message,
+            })
+          end
           update
         rescue RuntimeError => e
           warn "#{e}: #{message}"
