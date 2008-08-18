@@ -36,7 +36,7 @@ class AppController < OSX::NSObject
 
   OSX.require_framework 'WebKit'
   WASSR_API_BASE = URI('http://api.wassr.jp/')
-  MAX_STATUS = 2000
+  MAX_STATUS = 500
   MAX_FAV_HISTORY = 10
 
   ib_outlet :window, :main_view, :input_field, :pref_panel, :total_view, :nick_view, :channel_view
@@ -149,6 +149,9 @@ class AppController < OSX::NSObject
           message = "@#{item['reply_user_login_id']} #{message}"
         end
       end
+      if item['areacode']
+        message = "#{message} L:#{item['areaname']}"
+      end
       if item['photo_thumbnail_url']
         message = "#{message} #{item['photo_thumbnail_url']}"
       end
@@ -162,6 +165,7 @@ class AppController < OSX::NSObject
       end
     end
     p @user_id_list
+    warn "#{@data.size} items registered"
 
     if follow_tail?
       moveToBottom

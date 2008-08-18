@@ -216,10 +216,10 @@
 						<key>_historyCapacity</key>
 						<integer>0</integer>
 						<key>bookmark</key>
-						<string>88832CC50E460B2C0085CEFF</string>
+						<string>88B2FFE60E569C3400948AE8</string>
 						<key>history</key>
 						<array>
-							<string>88832C880E45AD640085CEFF</string>
+							<string>88451A970E569953000774F9</string>
 						</array>
 					</dict>
 					<key>SplitCount</key>
@@ -272,6 +272,8 @@
 			<key>Layout</key>
 			<array>
 				<dict>
+					<key>BecomeActive</key>
+					<true/>
 					<key>ContentConfiguration</key>
 					<dict>
 						<key>PBXBottomSmartGroupGIDs</key>
@@ -387,8 +389,6 @@
 							<string>0pt</string>
 						</dict>
 						<dict>
-							<key>BecomeActive</key>
-							<true/>
 							<key>ContentConfiguration</key>
 							<dict>
 								<key>PBXProjectModuleGUID</key>
@@ -425,9 +425,9 @@
 			</array>
 			<key>TableOfContents</key>
 			<array>
-				<string>88832C7E0E45ABEF0085CEFF</string>
+				<string>88B2FFD80E569B7A00948AE8</string>
 				<string>1CE0B1FE06471DED0097A5F4</string>
-				<string>88832C7F0E45ABEF0085CEFF</string>
+				<string>88B2FFD90E569B7A00948AE8</string>
 				<string>1CE0B20306471E060097A5F4</string>
 				<string>1CE0B20506471E060097A5F4</string>
 			</array>
@@ -563,8 +563,8 @@
 	<array>
 		<string>1CD10A99069EF8BA00B06720</string>
 		<string>882E8B3C0E1F50720067FB9A</string>
-		<string>888296D50E3FE501001DB15D</string>
 		<string>/Users/yoshimi/Sources/iWassr/iWassr.xcodeproj</string>
+		<string>888296D50E3FE501001DB15D</string>
 		<string>1C78EAAD065D492600B07095</string>
 	</array>
 	<key>WindowString</key>
@@ -645,7 +645,7 @@
 			<key>TableOfContents</key>
 			<array>
 				<string>882E8B3C0E1F50720067FB9A</string>
-				<string>88832C8A0E45AD640085CEFF</string>
+				<string>88B2FFDB0E569B7A00948AE8</string>
 				<string>1CD0528F0623707200166675</string>
 				<string>XCMainBuildResultsModuleGUID</string>
 			</array>
@@ -765,13 +765,13 @@
 			<key>TableOfContents</key>
 			<array>
 				<string>1CD10A99069EF8BA00B06720</string>
-				<string>88832C8B0E45AD640085CEFF</string>
+				<string>88B2FFDC0E569B7A00948AE8</string>
 				<string>1C162984064C10D400B95A72</string>
-				<string>88832C8C0E45AD640085CEFF</string>
-				<string>88832C8D0E45AD640085CEFF</string>
-				<string>88832C8E0E45AD640085CEFF</string>
-				<string>88832C8F0E45AD640085CEFF</string>
-				<string>88832C900E45AD640085CEFF</string>
+				<string>88B2FFDD0E569B7A00948AE8</string>
+				<string>88B2FFDE0E569B7A00948AE8</string>
+				<string>88B2FFDF0E569B7A00948AE8</string>
+				<string>88B2FFE00E569B7A00948AE8</string>
+				<string>88B2FFE10E569B7A00948AE8</string>
 			</array>
 			<key>ToolbarConfiguration</key>
 			<string>xcode.toolbar.config.debugV3</string>
@@ -912,7 +912,7 @@
 								<key>Frame</key>
 								<string>{{0, 0}, {679, 466}}</string>
 								<key>RubberWindowFrame</key>
-								<string>27 65 679 507 0 0 1280 778 </string>
+								<string>54 171 679 507 0 0 1280 778 </string>
 							</dict>
 							<key>Module</key>
 							<string>PBXDebugCLIModule</string>
@@ -935,13 +935,13 @@
 			<key>TableOfContents</key>
 			<array>
 				<string>1C78EAAD065D492600B07095</string>
-				<string>88832C910E45AD640085CEFF</string>
+				<string>88B2FFE20E569B7A00948AE8</string>
 				<string>1C78EAAC065D492600B07095</string>
 			</array>
 			<key>ToolbarConfiguration</key>
 			<string>xcode.toolbar.config.consoleV3</string>
 			<key>WindowString</key>
-			<string>27 65 679 507 0 0 1280 778 </string>
+			<string>54 171 679 507 0 0 1280 778 </string>
 			<key>WindowToolGUID</key>
 			<string>1C78EAAD065D492600B07095</string>
 			<key>WindowToolIsVisible</key>
