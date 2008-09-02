@@ -318,7 +318,7 @@ class AppController < OSX::NSObject
 
     # It shoud process first.
     # FIXME: for avoiding emoticon, using status['text']. 
-    msg = status['html'] || status['body']
+    msg = status['html'] || h(status['body'])
     URI.extract(h( status['text'] || status['body'] ), %w(http https) ).uniq.each do |uri|
       msg = msg.gsub(uri, %{<a class="external_link" href="#{ uri }">#{ _truncate_uri(uri.to_s, 40) }</a>})
     end
